@@ -1,0 +1,83 @@
+Intel DC P4510 1TB NVMe PCI-E 3.1 x4 3D TLC 2.5" 15mm 1DWPD
+https://www.intel.com/content/www/us/en/products/memory-storage/solid-state-drives/data-center-ssds/d7-series/dc-p4510-series/dc-p4510-1tb-2-5inch-3d2.html
+
+$ udisksctl  status
+MODEL                     REVISION  SERIAL               DEVICE
+--------------------------------------------------------------------------
+INTEL SSDPE2KX010T8                 BTLJ737303RZ1P0FGN   nvme0n1 
+
+$ sudo lshw -C storage
+              *-storage                                   
+                   description: Non-Volatile memory controller                                     
+                   product: Express Flash NVMe P4500/P4600
+                   vendor: Intel Corporation                                           
+                   physical id: 0       
+                   bus info: pci@0000:de:00.0                                         
+                   version: 00          
+                   width: 64 bits                                                                  
+                   clock: 33MHz                        
+                   capabilities: storage pm msix pciexpress msi nvm_express bus_master cap_list rom
+                   configuration: driver=nvme latency=0
+                   resources: irq:144 memory:eeb00000-eeb03fff memory:eeb10000-eeb1ffff
+
+
+o# time ./run-tests.sh --no-tarball --yes --class randrw --job 4k
+Logging to /test/fio/fio-perf-test-1594993572/fio-perf-test-1594993572.log
+###########################################################
+#
+#  Running test='fio-perf-test' job='4k'
+#  Results dir: randrw-4k.results
+#
+###########################################################
+4k: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=128
+fio-3.1
+Starting 1 process
+4k: Laying out IO files (240 files / total 63616MiB)
+
+4k: (groupid=0, jobs=1): err= 0: pid=9552: Fri Jul 17 07:53:32 2020
+   read: IOPS=13.7k, BW=53.6MiB/s (56.2MB/s)(15.7GiB/300001msec)
+    slat (nsec): min=1618, max=1068.4k, avg=22872.38, stdev=17856.34
+    clat (usec): min=54, max=10305, avg=4584.87, stdev=449.88
+     lat (usec): min=60, max=10324, avg=4608.32, stdev=451.28
+    clat percentiles (usec):
+     |  1.00th=[ 3032],  5.00th=[ 4113], 10.00th=[ 4228], 20.00th=[ 4359],
+     | 30.00th=[ 4490], 40.00th=[ 4555], 50.00th=[ 4621], 60.00th=[ 4686],
+     | 70.00th=[ 4752], 80.00th=[ 4883], 90.00th=[ 5014], 95.00th=[ 5080],
+     | 99.00th=[ 5276], 99.50th=[ 5407], 99.90th=[ 5604], 99.95th=[ 5800],
+     | 99.99th=[ 6259]
+   bw (  KiB/s): min=20400, max=152888, per=100.00%, avg=57241.82, stdev=7469.79, samples=30000
+   iops        : min= 5100, max=38222, avg=14311.79, stdev=1867.45, samples=30000
+  write: IOPS=13.7k, BW=53.6MiB/s (56.2MB/s)(15.7GiB/300001msec)
+    slat (nsec): min=1800, max=1025.2k, avg=34340.39, stdev=22217.81
+    clat (usec): min=94, max=10392, avg=4678.38, stdev=317.06
+     lat (usec): min=107, max=10423, avg=4713.45, stdev=317.37
+    clat percentiles (usec):
+     |  1.00th=[ 3949],  5.00th=[ 4228], 10.00th=[ 4293], 20.00th=[ 4424],
+     | 30.00th=[ 4555], 40.00th=[ 4621], 50.00th=[ 4686], 60.00th=[ 4752],
+     | 70.00th=[ 4817], 80.00th=[ 4948], 90.00th=[ 5080], 95.00th=[ 5145],
+     | 99.00th=[ 5407], 99.50th=[ 5473], 99.90th=[ 5669], 99.95th=[ 5735],
+     | 99.99th=[ 6128]
+   bw (  KiB/s): min=39111, max=148888, per=100.00%, avg=57230.89, stdev=6126.62, samples=30000
+   iops        : min= 9777, max=37222, avg=14307.55, stdev=1531.53, samples=30000
+  lat (usec)   : 100=0.01%, 250=0.04%, 500=0.06%, 750=0.05%, 1000=0.06%
+  lat (msec)   : 2=0.22%, 4=1.43%, 10=98.14%, 20=0.01%
+  cpu          : usr=13.69%, sys=55.68%, ctx=6855963, majf=0, minf=1866
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=110.6%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued rwt: total=4116125,4114963,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+   READ: bw=53.6MiB/s (56.2MB/s), 53.6MiB/s-53.6MiB/s (56.2MB/s-56.2MB/s), io=15.7GiB (16.9GB), run=300001-300001msec
+  WRITE: bw=53.6MiB/s (56.2MB/s), 53.6MiB/s-53.6MiB/s (56.2MB/s-56.2MB/s), io=15.7GiB (16.9GB), run=300001-300001msec
+
+Disk stats (read/write):
+  nvme0n1: ios=4550872/9854064, merge=0/2877810, ticks=442088/171684, in_queue=344272, util=59.52%
+
+Done.
+
+real	7m20.388s
+user	0m58.724s
+sys	4m2.378s
+
