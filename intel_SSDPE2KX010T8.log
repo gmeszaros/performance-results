@@ -21,7 +21,7 @@ $ sudo lshw -C storage
                    resources: irq:144 memory:eeb00000-eeb03fff memory:eeb10000-eeb1ffff
 
 
-o# time ./run-tests.sh --no-tarball --yes --class randrw --job 4k
+$ time ./run-tests.sh --no-tarball --yes --class randrw --job 4k
 Logging to /test/fio/fio-perf-test-1594993572/fio-perf-test-1594993572.log
 ###########################################################
 #
@@ -80,4 +80,61 @@ Done.
 real	7m20.388s
 user	0m58.724s
 sys	4m2.378s
+
+$ ./run-tests.sh --no-tarball --yes --class randrw --job 4m
+Logging to /test/fio/fio-perf-test-1594994788/fio-perf-test-1594994788.log
+###########################################################
+#
+#  Running test='fio-perf-test' job='4m'
+#  Results dir: randrw-4m.results
+#
+###########################################################
+4m: (g=0): rw=randrw, bs=(R) 4096KiB-4096KiB, (W) 4096KiB-4096KiB, (T) 4096KiB-4096KiB, ioengine=libaio, iodepth=32
+fio-3.1
+Starting 1 process
+4m: Laying out IO files (240 files / total 63156MiB)
+4m: No I/O performed by libaio, perhaps try --debug=io option for details?
+
+4m: (groupid=0, jobs=1): err= 0: pid=10813: Fri Jul 17 08:08:56 2020
+   read: IOPS=190, BW=763MiB/s (800MB/s)(7816MiB/10248msec)
+    slat (usec): min=179, max=62445, avg=954.79, stdev=3900.46
+    clat (msec): min=3, max=183, avg=43.97, stdev=27.45
+     lat (msec): min=3, max=183, avg=44.93, stdev=27.25
+    clat percentiles (msec):
+     |  1.00th=[    6],  5.00th=[   12], 10.00th=[   14], 20.00th=[   19],
+     | 30.00th=[   24], 40.00th=[   32], 50.00th=[   41], 60.00th=[   49],
+     | 70.00th=[   56], 80.00th=[   64], 90.00th=[   80], 95.00th=[   97],
+     | 99.00th=[  129], 99.50th=[  138], 99.90th=[  174], 99.95th=[  184],
+     | 99.99th=[  184]
+   bw (  MiB/s): min=  363, max= 6000, per=100.00%, avg=1283.52, stdev=946.25, samples=634
+   iops        : min=   90, max= 1500, avg=320.88, stdev=236.39, samples=634
+  write: IOPS=190, BW=771MiB/s (809MB/s)(7904MiB/10248msec)
+    slat (usec): min=453, max=87558, avg=2162.82, stdev=7110.69
+    clat (msec): min=19, max=303, avg=120.13, stdev=44.51
+     lat (msec): min=21, max=304, avg=122.29, stdev=44.75
+    clat percentiles (msec):
+     |  1.00th=[   43],  5.00th=[   60], 10.00th=[   70], 20.00th=[   82],
+     | 30.00th=[   92], 40.00th=[  102], 50.00th=[  114], 60.00th=[  126],
+     | 70.00th=[  140], 80.00th=[  159], 90.00th=[  184], 95.00th=[  205],
+     | 99.00th=[  243], 99.50th=[  249], 99.90th=[  300], 99.95th=[  305],
+     | 99.99th=[  305]
+   bw (  MiB/s): min=  363, max= 6800, per=100.00%, avg=1731.44, stdev=1468.67, samples=473
+   iops        : min=   90, max= 1700, avg=432.66, stdev=367.25, samples=473
+  lat (msec)   : 4=0.23%, 10=1.46%, 20=10.16%, 50=20.52%, 100=35.14%
+  lat (msec)   : 250=33.09%, 500=0.21%
+  cpu          : usr=9.90%, sys=19.79%, ctx=1540, majf=0, minf=32944
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.2%, 16=0.4%, 32=393.2%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued rwt: total=1950,1949,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+
+Run status group 0 (all jobs):
+   READ: bw=763MiB/s (800MB/s), 763MiB/s-763MiB/s (800MB/s-800MB/s), io=7816MiB (8196MB), run=10248-10248msec
+  WRITE: bw=771MiB/s (809MB/s), 771MiB/s-771MiB/s (809MB/s-809MB/s), io=7904MiB (8288MB), run=10248-10248msec
+
+Disk stats (read/write):
+  nvme0n1: ios=244576/248027, merge=0/2077, ticks=6873512/13790912, in_queue=20636956, util=99.56%
+
+Done.
 
