@@ -75,3 +75,60 @@ Disk stats (read/write):
 
 Done.
 
+$ ./run-tests.sh --no-tarball --yes --class randrw --job 4m
+Logging to /home/ubuntu/fio/fio-perf-test-1594995113/fio-perf-test-1594995113.log
+###########################################################
+#
+#  Running test='fio-perf-test' job='4m'
+#  Results dir: randrw-4m.results
+#
+###########################################################
+4m: (g=0): rw=randrw, bs=(R) 4096KiB-4096KiB, (W) 4096KiB-4096KiB, (T) 4096KiB-4096KiB, ioengine=libaio, iodepth=32
+fio-3.1
+Starting 1 process
+4m: Laying out IO files (240 files / total 63156MiB)
+4m: No I/O performed by libaio, perhaps try --debug=io option for details?
+
+4m: (groupid=0, jobs=1): err= 0: pid=12249: Fri Jul 17 08:18:03 2020
+   read: IOPS=51, BW=206MiB/s (216MB/s)(24.2GiB/120548msec)
+    slat (usec): min=128, max=155842, avg=2687.51, stdev=15466.78
+    clat (msec): min=12, max=457, avg=198.82, stdev=68.28
+     lat (msec): min=12, max=457, avg=201.51, stdev=65.93
+    clat percentiles (msec):
+     |  1.00th=[   31],  5.00th=[   65], 10.00th=[   97], 20.00th=[  142],
+     | 30.00th=[  171], 40.00th=[  194], 50.00th=[  211], 60.00th=[  224],
+     | 70.00th=[  239], 80.00th=[  255], 90.00th=[  271], 95.00th=[  296],
+     | 99.00th=[  347], 99.50th=[  368], 99.90th=[  405], 99.95th=[  414],
+     | 99.99th=[  460]
+   bw (  KiB/s): min=372363, max=5006222, per=100.00%, avg=653877.42, stdev=603779.09, samples=4048
+   iops        : min=   90, max= 1222, avg=159.59, stdev=147.47, samples=4048
+  write: IOPS=51, BW=207MiB/s (217MB/s)(24.3GiB/120548msec)
+    slat (usec): min=363, max=169134, avg=4991.90, stdev=20146.90
+    clat (msec): min=101, max=867, avg=415.35, stdev=85.64
+     lat (msec): min=102, max=903, avg=420.35, stdev=87.79
+    clat percentiles (msec):
+     |  1.00th=[  232],  5.00th=[  284], 10.00th=[  309], 20.00th=[  347],
+     | 30.00th=[  368], 40.00th=[  388], 50.00th=[  409], 60.00th=[  435],
+     | 70.00th=[  464], 80.00th=[  489], 90.00th=[  523], 95.00th=[  558],
+     | 99.00th=[  634], 99.50th=[  651], 99.90th=[  785], 99.95th=[  852],
+     | 99.99th=[  869]
+   bw (  MiB/s): min=  363, max= 6222, per=100.00%, avg=1771.99, stdev=1336.07, samples=1463
+   iops        : min=   90, max= 1555, avg=442.73, stdev=333.91, samples=1463
+  lat (msec)   : 20=0.15%, 50=1.31%, 100=3.89%, 250=34.30%, 500=52.36%
+  lat (msec)   : 750=8.18%, 1000=0.06%
+  cpu          : usr=2.76%, sys=4.29%, ctx=6073, majf=0, minf=181457
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=123.6%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued rwt: total=6202,6199,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+
+Run status group 0 (all jobs):
+   READ: bw=206MiB/s (216MB/s), 206MiB/s-206MiB/s (216MB/s-216MB/s), io=24.2GiB (26.0GB), run=120548-120548msec
+  WRITE: bw=207MiB/s (217MB/s), 207MiB/s-207MiB/s (217MB/s-217MB/s), io=24.3GiB (26.1GB), run=120548-120548msec
+
+Disk stats (read/write):
+  sda: ios=32918/37043, merge=0/2475, ticks=5728348/6052344, in_queue=11783528, util=100.00%
+
+Done.
+
